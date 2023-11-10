@@ -22,6 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { FirstPageComponent } from './components/first-page/first-page.component';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 
 
@@ -51,7 +52,8 @@ import { FirstPageComponent } from './components/first-page/first-page.component
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    GridModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

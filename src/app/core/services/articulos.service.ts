@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 
 //Interface
 import { IArticulos } from "../interfaces/articulos.interface"
+import { Articulo } from "../models/model"
 import { environment } from "../../../environments/environment"
 
 //Constants
@@ -16,7 +17,7 @@ import { map, tap } from "rxjs/operators";
 
 export class ArticulosService {
 
-    dataArticulos: IArticulos[] = [];
+    dataArticulos: Articulo[] = [];
     constructor(
         private http: HttpClient
     ) { }

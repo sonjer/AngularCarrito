@@ -1,28 +1,51 @@
 <app-toolbar></app-toolbar>
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>Articulos</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="codigo">
-          <th mat-header-cell *matHeaderCellDef>Codigo</th>
-          <td mat-cell *matCellDef="let element"> {{ element.codigo }} </td>
-        </ng-container>
-        <ng-container matColumnDef="descripcion">
-          <th mat-header-cell *matHeaderCellDef>Descripcion</th>
-          <td mat-cell *matCellDef="let element"> {{ element.descripcion }} </td>
-        </ng-container>
-        <ng-container matColumnDef="precio">
-          <th mat-header-cell *matHeaderCellDef>Precio</th>
-          <td mat-cell *matCellDef="let element"> {{ element.precio }} </td>
-        </ng-container>
-        <ng-container matColumnDef="stock">
-          <th mat-header-cell *matHeaderCellDef>Stock</th>
-          <td mat-cell *matCellDef="let element"> {{ element.stock }} </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </mat-card-content>
+  <mat-card-header>
+    <mat-card-title>Articulos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form novalidate #myForm="ngForm">
+      <kendo-grid [data]="view" [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+        [pageable]="true" [sortable]="true" (dataStateChange)="onStateChange($event)" (edit)="editHandler($event)"
+        (cancel)="cancelHandler($event)" (save)="saveHandler($event)" (remove)="removeHandler($event)"
+        (add)="addHandler($event, myForm)" [navigable]="true">
+        <ng-template kendoGridToolbarTemplate>
+          <button kendoGridAddCommand>Add new</button>
+        </ng-template>
+        <kendo-grid-column field="codigo" title="Codigo"></kendo-grid-column>
+        <kendo-grid-column field="descripcion" editor="text" title="Descripcion">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input type="text" [(ngModel)]="dataItem.descripcion" name="descripcion" required>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="precio" editor="numeric" title="Precio">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input type="number" [(ngModel)]="dataItem.precio" name="precio">
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="imagen" title="Imagen">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input type="text" [(ngModel)]="dataItem.imagen" name="imagen" required>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="stock" editor="numeric" title="Unidades en Stock">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input type="number" [(ngModel)]="dataItem.stock" name="stock">
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-command-column title="command" [width]="220">
+          <ng-template kendoGridCellTemplate let-isNew="isNew">
+            <button kendoGridEditCommand [primary]="true">Edit</button>
+            <button kendoGridRemoveCommand>Remove</button>
+            <button kendoGridSaveCommand>
+              {{ isNew ? "Add" : "Update" }}
+            </button>
+            <button kendoGridCancelCommand>
+              {{ isNew ? "Discard changes" : "Cancel" }}
+            </button>
+          </ng-template>
+        </kendo-grid-command-column>
+      </kendo-grid>
+    </form>
+  </mat-card-content>
 </mat-card>
