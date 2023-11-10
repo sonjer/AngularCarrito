@@ -1,0 +1,16 @@
+.menu-spacer {
+    flex: 1 1 auto;
+  }
+
+  
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    box-shadow: 0 5px 14px 0 rgba(0,0,0,0.05) !important;
+    margin-bottom: 9px;
+  }
+

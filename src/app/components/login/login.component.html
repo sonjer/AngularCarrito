@@ -1,0 +1,38 @@
+<div class="background">
+    <div class="center-content">
+        <div class="card group mx-auto ">
+            <div class="card-body">
+                <form [formGroup]="loginForm">
+                    <div class="center-content">
+                        <h2 class="project-name">{{ nameProject }}</h2>
+                    </div>
+                    <div class="center-content">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email" formControlName="username" />
+                        </mat-form-field>
+                    </div>
+                    <div class="center-content">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput placeholder="Contraseña" type="password" formControlName="password" />
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="showAlertLoginError" class="alert alert-danger alert-dismissible fade show"
+                        role="alert">
+                        <strong>Algo salio mal!</strong>, Verificar sus credenciales.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                            (click)="close()">
+                        </button>
+                    </div>
+                    <div class="center-content">
+                        <button style="max-width: 130px; min-width: 130px;" mat-raised-button color="primary"
+                            [disabled]="loginForm.invalid" (click)="onSubmit()">
+                            Ingresar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<mat-toolbar class="navbar" style="background-color: #ffffff">
+    <mat-toolbar-row>
+        <a class="navbar-brand" style="color: black; background-color: #ffffff"><img
+                src="../../../../assets/images/Carrito.png"
+                style="width: 80px; margin-top: -6px; margin-left: 5px;"><strong></strong></a>
+        <span class="menu-spacer"></span>
+        <button mat-button color="primary" [matMenuTriggerFor]="menu">Hola, {{this.username}} </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a mat-tab-link (click)="navigateHomeUser()" [active]="link == '/Home'"> Inicio </a>
+    <a mat-tab-link (click)="navigateFirstPage()" [active]="link == '/FirstPage'"> First page </a>
+    <a mat-tab-link (click)="navigateHomeUser()" [active]="link == '/SecondPage'"> Second page </a>
+    <a mat-tab-link (click)="navigateHomeUser()" [active]="link == '/ThirdPage'"> Third page </a>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

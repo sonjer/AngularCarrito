@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+    font-family: 'MyriadProBolt';
+    src: url('./assets/fonts/MyriadPro-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'MyriadProLight';
+    src: url('./assets/fonts/MyriadPro-Light.ttf');
+}
+
+@font-face {
+    font-family: 'MyriadProRegular';
+    src: url('./assets/fonts/MyriadPro-Regular.ttf');
+}
+
+.font-custon-bolt {
+    font-family: 'MyriadProBolt';
+}
+
+.font-custon-light {
+    font-family: 'MyriadProLight';
+}
+
+.font-custon-light {
+    font-family: 'MyriadProRegular';
+}

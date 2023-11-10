@@ -1,0 +1,152 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+//GAMA COLORES RAGASA
+$ragasa-primary-color:(
+  50 : #efe6f6,
+  100 : #d7c0e9,
+  200 : #bc96da,
+  300 : #a16ccb,
+  400 : #8c4dc0,
+  500 : #782db5,
+  600 : #7028ae,
+  700 : #6522a5,
+  800 : #5b1c9d,
+  900 : #48118d,
+  A100 : #d9bfff,
+  A200 : #bb8cff,
+  A400 : #9c59ff,
+  A700 : #8d40ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #ffffff,
+      A700 : #ffffff,
+    )
+);
+
+$ragasa-accent-color: (
+  50 : #f2f8e8,
+  100 : #dfeec5,
+  200 : #cae39e,
+  300 : #b4d877,
+  400 : #a4cf5a,
+  500 : #94c73d,
+  600 : #8cc137,
+  700 : #81ba2f,
+  800 : #77b327,
+  900 : #65a61a,
+  A100 : #eeffdc,
+  A200 : #d4ffa9,
+  A400 : #bbff76,
+  A700 : #aeff5d,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #000000,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$ragasa-warn-color: (
+  50 : #f5f6e6,
+  100 : #e7e9c0,
+  200 : #d7da96,
+  300 : #c6cb6c,
+  400 : #bac04d,
+  500 : #aeb52d,
+  600 : #a7ae28,
+  700 : #9da522,
+  800 : #949d1c,
+  900 : #848d11,
+  A100 : #faffbf,
+  A200 : #f6ff8c,
+  A400 : #f1ff59,
+  A700 : #efff40,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$my-custom-typography: mat.define-typography-config(
+  $font-family: "MyriadProBolt",
+  $headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $headline-2: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $headline-3: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $headline-4: mat.define-typography-level(34px, 40px, 400),
+  $headline-5: mat.define-typography-level(24px, 32px, 400),
+  $headline-6: mat.define-typography-level(24px, 32px, 400, $letter-spacing: -0.005em),
+  $subtitle-1: mat.define-typography-level(24px, 32px, 400, $letter-spacing: -0.005em),
+  $subtitle-2: mat.define-typography-level(16px, 24px, 400, $letter-spacing: -0.005em),
+  $body-1: mat.define-typography-level(16px, 24px, 400, $letter-spacing: -0.005em),
+  $body-2: mat.define-typography-level(24px, 32px, 400, $letter-spacing: -0.005em),
+  $caption: mat.define-typography-level(16px, 24px, 400, $letter-spacing: -0.005em),
+  $button: mat.define-typography-level(14px, 24px, 400, $letter-spacing: -0.005em),
+  $overline: mat.define-typography-level(16px, 24px, 400, $letter-spacing: -0.005em),
+);
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$segurosRagasa-primary: mat.define-palette($ragasa-primary-color);
+$segurosRagasa-accent: mat.define-palette($ragasa-accent-color);
+
+// The warn palette is optional (defaults to red).
+$segurosRagasa-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$segurosRagasa-theme: mat.define-light-theme((
+  color: (
+    primary: $segurosRagasa-primary,
+    accent: $segurosRagasa-accent,
+    warn: $segurosRagasa-warn,
+  ),
+  typography: $my-custom-typography,
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($segurosRagasa-theme);
+
+
