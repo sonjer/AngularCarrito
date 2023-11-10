@@ -11,9 +11,7 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <nav mat-tab-nav-bar [tabPanel]="tabPanel">
-    <a mat-tab-link (click)="navigateHomeUser()" [active]="link == '/Home'"> Inicio </a>
-    <a mat-tab-link (click)="navigateFirstPage()" [active]="link == '/FirstPage'"> First page </a>
-    <a mat-tab-link (click)="navigateHomeUser()" [active]="link == '/SecondPage'"> Second page </a>
-    <a mat-tab-link (click)="navigateHomeUser()" [active]="link == '/ThirdPage'"> Third page </a>
+    <a mat-tab-link (click)="navigateHomeUser()" [active]="link == '/Home'"> Tienda</a>
+    <a mat-tab-link (click)="navigateFirstPage()" [active]="link == '/Articulos'"> Listado Articulos</a>
 </nav>
 <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

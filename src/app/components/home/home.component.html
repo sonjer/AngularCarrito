@@ -10,7 +10,7 @@
         (cancel)="cancelHandler($event)" (save)="saveHandler($event)" (remove)="removeHandler($event)"
         (add)="addHandler($event, myForm)" [navigable]="true">
         <ng-template kendoGridToolbarTemplate>
-          <button kendoGridAddCommand>Add new</button>
+          <button kendoGridAddCommand>Agregar nuevo</button>
         </ng-template>
         <kendo-grid-column field="codigo" title="Codigo"></kendo-grid-column>
         <kendo-grid-column field="descripcion" editor="text" title="Descripcion">
@@ -35,13 +35,13 @@
         </kendo-grid-column>
         <kendo-grid-command-column title="command" [width]="220">
           <ng-template kendoGridCellTemplate let-isNew="isNew">
-            <button kendoGridEditCommand [primary]="true">Edit</button>
-            <button kendoGridRemoveCommand>Remove</button>
+            <button kendoGridEditCommand [primary]="true">Editar</button>
+            <button kendoGridRemoveCommand>Eliminar</button>
             <button kendoGridSaveCommand>
-              {{ isNew ? "Add" : "Update" }}
+              {{ isNew ? "Agregar" : "Actualizar" }}
             </button>
             <button kendoGridCancelCommand>
-              {{ isNew ? "Discard changes" : "Cancel" }}
+              {{ isNew ? "Desacartar" : "Cancelar" }}
             </button>
           </ng-template>
         </kendo-grid-command-column>

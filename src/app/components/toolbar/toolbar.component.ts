@@ -34,7 +34,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   navigateFirstPage(){
-    this.route.navigate(['/FirstPage']);
+    this.route.navigate(['/Articulos']);
   }
 
 }

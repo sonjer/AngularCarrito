@@ -1,22 +1,19 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { IArticulos } from 'src/app/core/interfaces/articulos.interface';
+import { Component, OnInit } from '@angular/core';
 import { Articulo } from 'src/app/core/models/model';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { NgForm } from "@angular/forms";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import {
   GridComponent,
-  GridDataResult,
   CancelEvent,
   EditEvent,
   RemoveEvent,
   SaveEvent,
   AddEvent,
 } from "@progress/kendo-angular-grid";
-import { State, process } from "@progress/kendo-data-query";
+import { State } from "@progress/kendo-data-query";
 import { ArticulosService } from '../../core/services/articulos.service';
-import { Observable } from "rxjs";
+import { Constants } from 'src/app/core/constants/constants';
 
 @Component({
   selector: 'app-home',
@@ -38,19 +35,23 @@ export class HomeComponent implements OnInit {
   editeArticulo: Articulo;
 
   constructor(private articulosService: ArticulosService) {
+
+  }
+
+  ngOnInit(): void {
+    this.getArticulos();
+  }
+
+  public onStateChange(state: State) {
+    this.gridState = state;
+  }
+
+  private getArticulos() {
     this.articulosService.getArticulos().then(dataArticulos => {
       this.dataSource = dataArticulos;
       this.view = this.dataSource;
       console.log('this.view', this.view)
     })
-  }
-
-  ngOnInit(): void {
-
-  }
-
-  public onStateChange(state: State) {
-    this.gridState = state;
   }
 
   public addHandler(args: AddEvent, formInstance: NgForm): void {
@@ -73,23 +74,43 @@ export class HomeComponent implements OnInit {
     console.log('this.editeArticulo', this.editeArticulo)
     // edit the row
     args.sender.editRow(args.rowIndex);
+    console.log('entro actualizar', args.rowIndex)
   }
 
   public removeHandler(args: RemoveEvent): void {
     // remove the current dataItem from the current data source
     // in this example, the dataItem is `editService`
-    //this.editService.remove(args.dataItem);
+    this.articulosService.genericService(args.dataItem, Constants.spDelete)
+      .then(() => {
+        this.getArticulos();
+      }
+      );
   }
 
   public saveHandler(args: SaveEvent): void {
     // update the data source
+    if (args.isNew) {
+      console.log('entro save', args.dataItem, args.isNew)
+      this.articulosService.genericService(args.dataItem, Constants.spInsert)
+        .then(() => {
+          this.getArticulos();
+        }
+        );
+    }
+    else if (!args.isNew) {
+      console.log('entro update', args.dataItem, args.isNew)
+      this.articulosService.genericService(args.dataItem, Constants.spUpdate)
+        .then(() => {
+          this.getArticulos();
+        }
+        );
+    }
     //this.editService.save(args.dataItem, args.isNew);
-
     // close the editor, that is, revert the row back into view mode
     args.sender.closeRow(args.rowIndex);
 
-    //this.editedRowIndex = undefined;
-    //this.editedProduct = undefined;
+    this.editedRowIndex = undefined!;
+    this.editeArticulo = undefined!;
   }
 
 

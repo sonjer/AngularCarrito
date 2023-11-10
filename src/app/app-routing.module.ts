@@ -11,13 +11,13 @@ const routes: Routes = [
   },
   { 
     path: 'Home', 
-    component: HomeComponent,
+    component: FirstPageComponent,
     canActivate: [loginGuardGuard]
   },
   { 
-    path: 'FirstPage', 
-    component: FirstPageComponent,
-  },
+    path: 'Articulos', 
+    component: HomeComponent
+    },
   {
     path: '', redirectTo: 'Login',
     pathMatch: 'full',

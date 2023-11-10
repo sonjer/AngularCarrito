@@ -4,4 +4,5 @@ export class Articulo {
     public precio = 0;
     public imagen = "";
     public stock = 0;
+    public cantidad = 0;
   }

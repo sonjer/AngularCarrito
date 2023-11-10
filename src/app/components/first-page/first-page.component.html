@@ -1,7 +1,65 @@
 <app-toolbar></app-toolbar>
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>first-page works!</mat-card-title>
-        <mat-card-subtitle>contenido</mat-card-subtitle>
-      </mat-card-header>
+  <mat-card-header>
+    <mat-card-title>Tienda</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-8">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Imagen</th>
+              <th scope="col">Descripcio</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Stock</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let articulo of articulos">
+              <tr *ngIf="articulo.stock>0">
+                <td><img [src]="'data:image/png;base64,' + articulo.imagen"></td>
+                <td>{{articulo.descripcion}}</td>
+                <td>{{articulo.precio | currency:'$'}}</td>
+                <td>{{articulo.stock}}</td>
+                <td>
+                  <div class="input-group input-group-sm mb-3">
+                    <button type="button" class="btn btn-light btn-sm" (click)="downQuantity(articulo)">-</button>
+                    <input class="form-control form-control-sm" type="number" [(ngModel)]="articulo.cantidad" (focusout)="verifyArticuloQuantity(articulo)"/>
+                    <button type="button" class="btn btn-light btn-sm" (click)="upQuantity(articulo)" >+</button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+        <h3>Carrito de Compras</h3>
+        <table class="table table-primary table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let articulo of articulosCarrito">
+              <tr>
+                <td>{{articulo.descripcion}}</td>
+                <td>{{articulo.cantidad}}</td>
+                <td>{{articulo.precio | currency:'$'}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <p class="text-end">Total {{total() | currency:'$'}}</p>
+        <div class="text-end">
+          <button>Comprar</button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
 </mat-card>
