@@ -33,9 +33,18 @@ export class FirstPageComponent {
 
   upQuantity(articulo : Articulo): void{
     if(articulo.stock > articulo.cantidad) {
-      articulo.cantidad ++;
+      articulo.cantidad;
+      console.log(articulo.cantidad)
       this.articuloCarritoService.addToCart(articulo);
     }
+  }
+
+  cleanCart(){
+    this.articuloCarritoService.cleanCart();
+  }
+
+  buyCart() {
+    console.log('this.articulosCarrito', this.articulosCarrito)
   }
 
   downQuantity(articulo : Articulo): void{
@@ -47,12 +56,12 @@ export class FirstPageComponent {
 
   verifyArticuloQuantity(articulo : Articulo): void {
     if(articulo.stock < articulo.cantidad) {
-      alert("No se pueden pedir más de las cervezas que hay en stock");
+      alert("No se pueden pedir más de los Articulos que hay en stock");
       articulo.cantidad = articulo.stock;
     }
 
     if(articulo.cantidad < 0) {
-      alert("No se pueden pedir menos que 0 cervezas");
+      alert("No se pueden pedir menos de 0 Articulos");
       articulo.cantidad = 0;
     }
   }

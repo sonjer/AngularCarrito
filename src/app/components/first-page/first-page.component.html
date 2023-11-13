@@ -10,7 +10,7 @@
           <thead>
             <tr>
               <th scope="col">Imagen</th>
-              <th scope="col">Descripcio</th>
+              <th scope="col">Descripción</th>
               <th scope="col">Precio</th>
               <th scope="col">Stock</th>
               <th scope="col"></th>
@@ -19,15 +19,15 @@
           <tbody>
             <ng-container *ngFor="let articulo of articulos">
               <tr *ngIf="articulo.stock>0">
-                <td><img [src]="'data:image/png;base64,' + articulo.imagen"></td>
+                <td><img [src]="'data:image/png;base64,' + articulo.imagen" style="width: 130px; height: 135px;"></td>
                 <td>{{articulo.descripcion}}</td>
                 <td>{{articulo.precio | currency:'$'}}</td>
                 <td>{{articulo.stock}}</td>
                 <td>
                   <div class="input-group input-group-sm mb-3">
-                    <button type="button" class="btn btn-light btn-sm" (click)="downQuantity(articulo)">-</button>
+                    <button type="button" class="btn btn-light btn-sm" (click)="downQuantity(articulo)">QUITAR</button>
                     <input class="form-control form-control-sm" type="number" [(ngModel)]="articulo.cantidad" (focusout)="verifyArticuloQuantity(articulo)"/>
-                    <button type="button" class="btn btn-light btn-sm" (click)="upQuantity(articulo)" >+</button>
+                    <button type="button" class="btn btn-light btn-sm" (click)="upQuantity(articulo)" >AGREGAR</button>
                   </div>
                 </td>
               </tr>
@@ -56,8 +56,17 @@
           </tbody>
         </table>
         <p class="text-end">Total {{total() | currency:'$'}}</p>
-        <div class="text-end">
-          <button>Comprar</button>
+        <div class="row">
+          <div class="col-6">
+            <div class="text-end">
+              <button mat-raised-button color="primary" (click)="buyCart()">Comprar</button>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="text-end">
+              <button mat-raised-button color="primary" (click)="cleanCart()">Limpiar Carrito</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
